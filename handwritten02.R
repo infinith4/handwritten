@@ -68,19 +68,64 @@ length(eigen(S)$vectors[,1]) #p
 n
 
 di=0
-z<-array(eigen(S)$vectors[,1],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+m=10
+yvec=matrix(0,nrow=m,ncol=1)
+for(i in 1:m){
+    yvec[i]=t(eigen(S)$vectors[,i])%*%X[,1] #1番目の標本の第i主成分
+}
+
+restorevec=matrix(0,nrow=p,ncol=1)
+
+
+z<-array(X[,1],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
 z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
 image(1:28,1:28,z,main=di,col=cus_col(256))
 
-z<-array(eigen(S)$vectors[,1]+eigen(S)$vectors[,2],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+for(i in 1:m){
+    restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
+    
+    z<-array(restorevec,dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+    z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+    image(1:28,1:28,z,main=di,col=cus_col(256))
+    
+}
+
+
+z<-array(X[,2],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
 z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
 image(1:28,1:28,z,main=di,col=cus_col(256))
 
-z<-array(eigen(S)$vectors[,1]+eigen(S)$vectors[,2]+eigen(S)$vectors[,3],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+
+yvec=matrix(0,nrow=m,ncol=1)
+for(i in 1:m){
+    yvec[i]=t(eigen(S)$vectors[,i])%*%X[,2] #2番目の標本の第i主成分
+}
+
+for(i in 1:m){
+    restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
+    
+    z<-array(restorevec,dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+    z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+    image(1:28,1:28,z,main=di,col=cus_col(256))
+    
+}
+
+
+
+z<-array(X[,2],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
 z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
 image(1:28,1:28,z,main=di,col=cus_col(256))
 
-z<-array(eigen(S)$vectors[,1]+eigen(S)$vectors[,2]+eigen(S)$vectors[,3]+eigen(S)$vectors[,4],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+
+z<-array(eigen(S)$vectors[,1]*yvec[1]+eigen(S)$vectors[,2]*yvec[2],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+image(1:28,1:28,z,main=di,col=cus_col(256))
+
+z<-array(eigen(S)$vectors[,1]*yvec[1]+eigen(S)$vectors[,2]*yvec[2]+eigen(S)$vectors[,3]*yvec[3],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+image(1:28,1:28,z,main=di,col=cus_col(256))
+
+z<-array(eigen(S)$vectors[,1]*yvec[1]+eigen(S)$vectors[,2]*yvec[2]+eigen(S)$vectors[,3]*yvec[3]+eigen(S)$vectors[,4]*yvec[4]+eigen(S)$vectors[,5]*yvec[5]+eigen(S)$vectors[,6]*yvec[6]+eigen(S)$vectors[,7]*yvec[7]+eigen(S)$vectors[,8]*yvec[9]+eigen(S)$vectors[,10]*yvec[10]+eigen(S)$vectors[,4]*yvec[4],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
 z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
 image(1:28,1:28,z,main=di,col=cus_col(256))
 
