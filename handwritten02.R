@@ -1,3 +1,5 @@
+#how to calculate y_i? (13.02.09)
+
 #setwd("C:\\Users\\tH4\\Dropbox\\R\\handwritten")
 setwd("./Dropbox/R/handwritten")
 
