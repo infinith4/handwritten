@@ -100,6 +100,7 @@ for(i in 1:m){
     yvec[i]=t(eigen(S)$vectors[,i])%*%X[,2] #2番目の標本の第i主成分
 }
 
+restorevec=matrix(0,nrow=p,ncol=1)
 for(i in 1:m){
     restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
     if(i==16||i==32||i==64||i==128){
@@ -121,6 +122,7 @@ for(i in 1:m){
     yvec[i]=t(eigen(S)$vectors[,i])%*%X[,3] #3番目の標本の第i主成分
 }
 
+restorevec=matrix(0,nrow=p,ncol=1)
 for(i in 1:m){
     restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
     if(i==16||i==32||i==64||i==128){
@@ -129,8 +131,6 @@ for(i in 1:m){
         image(1:28,1:28,z,main=i,col=cus_col(256))
     }
 }
-
-
 
 #4番目の標本の復元###################
 m=128
@@ -144,9 +144,34 @@ for(i in 1:m){
     yvec[i]=t(eigen(S)$vectors[,i])%*%X[,4] #4番目の標本の第i主成分
 }
 
+restorevec=matrix(0,nrow=p,ncol=1)
 for(i in 1:m){
     restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
     if(i==16||i==32||i==64||i==128){
+        z<-array(restorevec,dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+        z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+        image(1:28,1:28,z,main=i,col=cus_col(256))
+    }
+}
+
+
+
+#4番目の標本の復元###################
+m=256
+z<-array(X[,4],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+image(1:28,1:28,z,main="original data",col=cus_col(256))
+
+
+yvec=matrix(0,nrow=m,ncol=1)
+for(i in 1:m){
+    yvec[i]=t(eigen(S)$vectors[,i])%*%X[,4] #4番目の標本の第i主成分
+}
+
+restorevec=matrix(0,nrow=p,ncol=1)
+for(i in 1:m){
+    restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
+    if(i==32||i==64||i==128||i==m){
         z<-array(restorevec,dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
         z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
         image(1:28,1:28,z,main=i,col=cus_col(256))
