@@ -77,7 +77,7 @@ for(i in 1:m){
 z<-array(X[,1],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
 z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
 image(1:28,1:28,z,main="original data",col=cus_col(256))
-n
+
 restorevec=matrix(0,nrow=p,ncol=1)
 for(i in 1:m){
     restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
