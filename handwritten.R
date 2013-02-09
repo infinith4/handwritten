@@ -1,7 +1,7 @@
 #how to calculate y_i? (13.02.09)
 
 #setwd("C:\\Users\\tH4\\Dropbox\\R\\handwritten")
-setwd("./Dropbox/R/handwritten")
+setwd("/home/th4/Dropbox/R/handwritten")
 
 getwd()
 
@@ -87,6 +87,16 @@ for(i in 1:m){
         image(1:28,1:28,z,main=i,col=cus_col(256))
     }
 }
+
+
+par(mfrow=c(5,5),pty='s',mar=c(1,1,1,1),xaxt='n',yaxt='n')
+l=5*5
+for(i in 1:l){
+    z<-array(eigen(S)$vectors[,i],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+    z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+    image(1:28,1:28,z,main=i,col=cus_col(256))
+}
+
 
 #2番目の標本の復元###################
 m=128
