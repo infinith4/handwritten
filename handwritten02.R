@@ -1,7 +1,7 @@
 #how to calculate y_i? (13.02.09)
 
 #setwd("C:\\Users\\tH4\\Dropbox\\R\\handwritten")
-setwd("./Dropbox/R/handwritten")
+setwd("~/gitrepo/handwritten")
 
 getwd()
 
@@ -77,9 +77,11 @@ for(i in 1:m){
 restorevec=matrix(0,nrow=p,ncol=1)
 
 
-z<-array(X[,1],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
-z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
+z<-array(X[,1],dim=c(28,28)) #28*28 original data
+z<-z[,28:1] ##right side up #
+dim(z)
 image(1:28,1:28,z,main=di,col=cus_col(256))
+
 
 for(i in 1:m){
     restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
@@ -91,7 +93,7 @@ for(i in 1:m){
 }
 
 
-z<-array(X[,2],dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
+z<-array(X[,2],dim=c(28,28)) #28*28 2番目の標本
 z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
 image(1:28,1:28,z,main=di,col=cus_col(256))
 
@@ -102,7 +104,7 @@ for(i in 1:m){
 }
 
 for(i in 1:m){
-    restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #1番目の標本の第i主成分
+    restorevec=restorevec+yvec[i]*eigen(S)$vectors[,i] #2番目の標本の第i主成分
     
     z<-array(restorevec,dim=c(28,28)) #28*28?̉摜?ɂ??邽?߁B
     z<-z[,28:1] ##right side up #??28??????1???ɁA??27??????2???ɁA....
